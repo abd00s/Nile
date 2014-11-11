@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     @sort_by = params[:sort_by]
     @dir = params[:direction] || "desc"
     if @dir == "desc"
-      @dir_arrow = "&#9660;".html_safe
+      @dir_arrow = "&#9660;".html_safe #down
       @opposite_dir = "asc"
     else
       @dir_arrow = "&#9650;".html_safe
