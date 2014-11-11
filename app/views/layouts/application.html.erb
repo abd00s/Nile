@@ -25,12 +25,12 @@
 					<li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
 				</ul>
 
-				<!-- <section class="top-bar-section">
+				<section class="top-bar-section">
 
 					<ul class="right">
-						<li class="divider"></li>
-						<li class="has-dropdown">
-							<a href="#">Main Item 1</a>
+						<!-- <li class="divider"></li> -->
+						<!-- <li class="has-dropdown"> -->
+<!-- 							<a href="#">Main Item 1</a>
 							<ul class="dropdown">
 								<li><label>Section Name</label></li>
 								<li class="has-dropdown">
@@ -53,48 +53,64 @@
 								<li><a href="#">Dropdown Option</a></li>
 								<li class="divider"></li>
 								<li><a href="#">See all →</a></li>
-							</ul>
-						</li>
+							</ul> -->
+<!-- 						</li>
 						<li class="divider"></li>
 						<li><a href="#">Main Item 2</a></li>
-						<li class="divider"></li>
-						<li class="has-dropdown">
-							<a href="#">Main Item 3</a>
-							<ul class="dropdown">
-								<li><a href="#">Dropdown Option</a></li>
+						<li class="divider"></li> -->
+						<li class="name">
+							<h1 style="color:white;">
+								<% if current_user %>
+								Signed in as <%= current_user.email %> 
+								<% else %>
+								<%= link_to "Log in", new_session_path %> 
+								<% end %>
+							</h1>
+<!-- 							<ul class="dropdown">
+ --><!-- 								<li><a href="#">Dropdown Option</a></li>
 								<li><a href="#">Dropdown Option</a></li>
 								<li><a href="#">Dropdown Option</a></li>
 								<li class="divider"></li>
-								<li><a href="#">See all →</a></li>
-							</ul>
-						</li>
-					</ul>
-				</section> -->
-			</nav>
+								<li><a href="#">See all →</a></li> -->
+<!-- 							</ul>
+-->						</li>
+</ul>
+</section>
+</nav>
 
-		</div>
+</div>
+<% if flash[:notice] %>
+<p id="notice"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:alert] %>
+<p id="alert"><%= flash[:alert] %></p>
+<% end %>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		<%= yield %>
 	</div>
+</div>
 
-	<div class="row">
-		<div class="large-12 columns">
-			<%= yield %>
-		</div>
-	</div>
+<footer class="row">
+	<div class="large-12 columns"><hr/>
+		<div class="row">
 
-	<footer class="row">
-		<div class="large-12 columns"><hr/>
-			<div class="row">
+			<div class="large-6 columns">
+				<p>© Copyright no one at all. Go to town.</p>
+			</div>
 
-				<div class="large-6 columns">
-					<p>© Copyright no one at all. Go to town.</p>
-				</div>
-
-				<div class="large-6 columns">
-					<ul class="inline-list right">
-						<li><a href="#">Link 1</a></li>
-						<li><a href="#">Link 2</a></li>
-						<li><a href="#">Link 3</a></li>
-						<li><a href="#">Link 4</a></li>
+			<div class="large-6 columns">
+				<ul class="inline-list right">
+					<li><a href="#">Link 1</a></li>
+					<li><a href="#">Link 2</a></li>
+					<li><a href="#">Link 3</a></li>
+					<li><% if current_user %>
+						<%= link_to "Log out", session_path("current"), :method => :delete %>
+						<% else %>
+						<%= link_to "Sign up", new_user_path %>
+						<% end %></li>
 					</ul>
 				</div>
 
