@@ -14,6 +14,26 @@ class ProductsController < ApplicationController
     if current_user
       @review = @product.reviews.build
     end
+
+    @reviews = Review.all
+    
+    @sort_by = params[:sort_by]
+    @dir = params[:direction] || "desc"
+    if @dir == "desc"
+      @dir_arrow = "&#9660;".html_safe
+      @opposite_dir = "asc"
+    else
+      @dir_arrow = "&#9650;".html_safe
+      @opposite_dir = "desc"
+    end 
+
+    if @sort_by
+      @reviews = @reviews.order(@sort_by => @dir.to_sym)
+      # @reviews = @reviews.order("#{@sort_by} #{@dir}")
+    end
+
+    # @search = Review.search(params[:q]) 
+    # @search_result = @search.result 
   end
 
   # GET /products/new

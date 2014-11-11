@@ -15,21 +15,39 @@
 	<%= @product.formatted_price %>
 </p>
 <% if current_user %>
+<% #@search = Review.search(params[:q]) %>
+<% #@search_result = @search.result %>
 
 <h3>Reviews</h3>
 
 <p>Reviews for <%= @product.name %></p>
+<table>
+<tr>
+ <b> Sort by: </b>
+ <ul>
+ 	<li>
+ 		<%= @dir_arrow if @sort_by == "created_at" %>
+ 		<%= link_to "Date", "?sort_by=created_at&direction=#{@opposite_dir}" %>
+	</li>
+ 	<li>
+ 		<%= @dir_arrow if @sort_by == "comment" %>
+ 		<%= link_to "Comment", "?sort_by=comment&direction=#{@opposite_dir}" %>
+	</li>
+</ul>
 
-<% @product.reviews.each do |review| %>
-<p>
-	<%= review.comment %>
-	<br>
+  </tr>
+
+
+<% @reviews.each do |review| %>
+
+	<thead> <tr> <td><%= review.comment %></td> </tr> </thead> 
 	<% if review.user != nil %>
-	<em> by <%= review.user.name %></em>
-	Added on: <%= review.created_at %>
+	<tbody> <tr> <td><em> by <%= review.user.name %></em></td> </tr> </tbody>
+	<tbody> <tr> <td>Added on: <%= review.created_at %></td> </tr> </tbody>
 	<% end %>
-</p>
+
 <% end %>
+</table>
 <h4>New Review</h4>
 
 <%= form_for([@product, @review]) do |f| %>
