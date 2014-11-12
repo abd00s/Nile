@@ -1,53 +1,68 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-	<strong>Name:</strong>
-	<%= @product.name %>
-</p>
 
-<p>
-	<strong>Description:</strong>
-	<%= @product.description %>
-</p>
 
-<p>
-	<strong>Price in cents:</strong>
-	<%= @product.formatted_price %>
-</p>
+
+
+<div class="row">
+	<hr>
+	<div class="large-2 columns">
+		<img src="http://placehold.it/400x300&text=[img]">
+		<br>
+		<img src="http://placehold.it/400x300&text=[img]">
+		<br>
+		<img src="http://placehold.it/400x300&text=[img]">
+		<br>
+		<img src="http://placehold.it/400x300&text=[img]">
+	</div>
+	<div class="large-5 columns">
+		<img src="http://placehold.it/400x500&text=PRODUCT IMAGE">
+	</div>
+	
+	<div class="large-5 columns">
+		<h4><%= @product.name %></h4>
+		<p><strong>$<%= @product.formatted_price %></strong> </p> 
+		<p><%= @product.description %></p>
+
+		<div class="panel">
+			<h5>Header</h5>
+			<h6 class="subheader">Praesent placerat dui tincidunt elit suscipit sed.</h6>
+			<a href="#" class="small button">Add to Cart</a>
+		</div>
+
+	</div>
+</div>
+<hr/>
+
+		<b> Sort by: </b>
+		<ul>
+			<li>
+				<%= @dir_arrow if @sort_by == "created_at" %>
+				<%= link_to "Date", "?sort_by=created_at&direction=#{@opposite_dir}" %>
+			</li>
+			<li>
+				<%= @dir_arrow if @sort_by == "comment" %>
+				<%= link_to "Comment", "?sort_by=comment&direction=#{@opposite_dir}" %>
+			</li>
+		</ul>
+
+
 <% if current_user %>
-<% #@search = Review.search(params[:q]) %>
-<% #@search_result = @search.result %>
-
-<h3>Reviews</h3>
-<!-- def sort_link(field_name, current_direction, current_sort_field) INTO A HELPER-->
-<p>Reviews for <%= @product.name %></p>
-<table>
-<tr>
- <b> Sort by: </b>
- <ul>
- 	<li>
- 		<%= @dir_arrow if @sort_by == "created_at" %>
- 		<%= link_to "Date", "?sort_by=created_at&direction=#{@opposite_dir}" %>
-	</li>
- 	<li>
- 		<%= @dir_arrow if @sort_by == "comment" %>
- 		<%= link_to "Comment", "?sort_by=comment&direction=#{@opposite_dir}" %>
-	</li>
-</ul>
-
-  </tr>
+<% @product.reviews.all.each do |review| %>
+<div class="large-12 columns">
+	<h4><%= review.user.name %></h4>
+	<p> <%= review.comment %></p>
+	<p><em><%= review.created_at %></em> </p>
+</div>
+<%end%>
 
 
-<% @reviews.each do |review| %>
 
-	<thead> <tr> <td><%= review.comment %></td> </tr> </thead> 
-	<% if review.user != nil %>
-	<tbody> <tr> <td><em> by <%= review.user.name %></em></td> </tr> </tbody>
-	<tbody> <tr> <td>Added on: <%= review.created_at %></td> </tr> </tbody>
-	<% end %>
 
-<% end %>
-</table>
+
+
+
+
 <h4>New Review</h4>
 
 <%= form_for([@product, @review]) do |f| %>
@@ -79,3 +94,13 @@
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Delete', product_path(@product), method: :delete %> |
 <%= link_to 'Back', products_path %>
+<div class="row">
+	<hr>
+	<div class="large-12 columns">
+		<h4>You might also like:</h4>
+		<img src="http://placehold.it/200x150&text=[img]">
+		<img src="http://placehold.it/200x150&text=[img]">
+		<img src="http://placehold.it/200x150&text=[img]">
+		<img src="http://placehold.it/200x150&text=[img]">
+	</div>
+</div>
