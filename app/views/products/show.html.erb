@@ -1,50 +1,47 @@
 <p id="notice"><%= notice %></p>
 
+	<div class="row">
+		<hr>
+			<div class="large-2 columns">
+				<img src="http://placehold.it/400x300&text=[img]">
+				<br>
+				<img src="http://placehold.it/400x300&text=[img]">
+				<br>
+				<img src="http://placehold.it/400x300&text=[img]">
+				<br>
+				<img src="http://placehold.it/400x300&text=[img]">
+			</div>
 
+			<div class="large-5 columns">
+				<img src="http://placehold.it/400x500&text=PRODUCT IMAGE">
+			</div>
+			
+			<div class="large-5 columns">
+				<h4><%= @product.name %></h4>
+				<p><strong>$<%= @product.formatted_price %></strong> </p> 
+				<p><%= @product.description %></p>
 
-
-
-<div class="row">
-	<hr>
-	<div class="large-2 columns">
-		<img src="http://placehold.it/400x300&text=[img]">
-		<br>
-		<img src="http://placehold.it/400x300&text=[img]">
-		<br>
-		<img src="http://placehold.it/400x300&text=[img]">
-		<br>
-		<img src="http://placehold.it/400x300&text=[img]">
+				<div class="panel">
+					<h5>Header</h5>
+					<h6 class="subheader">Praesent placerat dui tincidunt elit suscipit sed.</h6>
+					<a href="#" class="small button">Add to Cart</a>
+				</div>
+			</div>
 	</div>
-	<div class="large-5 columns">
-		<img src="http://placehold.it/400x500&text=PRODUCT IMAGE">
-	</div>
-	
-	<div class="large-5 columns">
-		<h4><%= @product.name %></h4>
-		<p><strong>$<%= @product.formatted_price %></strong> </p> 
-		<p><%= @product.description %></p>
 
-		<div class="panel">
-			<h5>Header</h5>
-			<h6 class="subheader">Praesent placerat dui tincidunt elit suscipit sed.</h6>
-			<a href="#" class="small button">Add to Cart</a>
-		</div>
+	<hr/>
 
-	</div>
-</div>
-<hr/>
-
-		<b> Sort by: </b>
-		<ul>
-			<li>
-				<%= @dir_arrow if @sort_by == "created_at" %>
-				<%= link_to "Date", "?sort_by=created_at&direction=#{@opposite_dir}" %>
-			</li>
-			<li>
-				<%= @dir_arrow if @sort_by == "comment" %>
-				<%= link_to "Comment", "?sort_by=comment&direction=#{@opposite_dir}" %>
-			</li>
-		</ul>
+<b> Sort by: </b>
+<ul>
+	<li>
+		<%= @dir_arrow if @sort_by == "created_at" %>
+		<%= link_to "Date", "?sort_by=created_at&direction=#{@opposite_dir}" %>
+	</li>
+	<li>
+		<%= @dir_arrow if @sort_by == "comment" %>
+		<%= link_to "Comment", "?sort_by=comment&direction=#{@opposite_dir}" %>
+	</li>
+</ul>
 
 
 <% if current_user %>
@@ -55,13 +52,6 @@
 	<p><em><%= review.created_at %></em> </p>
 </div>
 <%end%>
-
-
-
-
-
-
-
 
 <h4>New Review</h4>
 
@@ -93,7 +83,7 @@
 <% end %>
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Delete', product_path(@product), method: :delete %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Home', products_path %>
 <div class="row">
 	<hr>
 	<div class="large-12 columns">
