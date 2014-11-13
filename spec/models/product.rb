@@ -13,4 +13,19 @@ describe Product do
     #be_valid runs the predicate matcher be_valid which is going to call the ActiveRecord valid? method
     expect(product).to_not be_valid
   end
+
+describe Product do
+  #Arrange necessary preconditions and inputs
+  let!(:product) { create(:product) }
+
+  # Example spec
+  it "must have a name" do
+    #Act on the object of the method under spec
+    product.name = ""
+
+    #Assert that the expected results have occurred
+    expect(product).to_not be_valid
+  end
+end
+
 end
